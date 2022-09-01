@@ -33,6 +33,11 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
         return $this->book->create($request->all());
     }
 
@@ -56,6 +61,11 @@ class BooksController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        
         $book->title = $request->title;
         $book->description = $request->description;
         $book->save();
