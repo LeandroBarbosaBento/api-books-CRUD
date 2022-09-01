@@ -4,9 +4,17 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BooksController extends Controller
 {
+
+    private $book;
+
+    public function __construct(Book $book)
+    {
+        $this->book = $book;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +33,7 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->book->create($request->all());
     }
 
     /**
